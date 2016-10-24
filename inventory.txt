@@ -1,0 +1,25 @@
+Components needed:
+
+Modal:
+- Header: "What do I do"
+- Description
+- List of steps
+- Summary ("So are you ready")
+- Button to close modal
+
+Main page
+- What? (help button)
+- New game button
+- Header
+- Make your Guess (static)
+- Form
+  - Input
+  - Submit
+- Guess counter
+
+
+Reducers needed
+
+
+
+
