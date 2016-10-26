@@ -14,8 +14,7 @@ var Modal = function(){
           <li>You will get feedback on how close ("hot") or far ("cold") your guess is.</li>
         </ol>
         <p>So, are you ready?</p>
-{//        <Link className="close" to="/">Got it!</Link>}
-        <button>Got it!</button>
+        <Link className="close" to="/">Got it!</Link>
       </div>
     </div>
   );
