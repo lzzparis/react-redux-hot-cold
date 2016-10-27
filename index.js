@@ -1,6 +1,7 @@
 var React = require("react");
 var ReactDOM = require("react-dom"); 
 var ReactRouter = require("react-router");
+var Provider = require("react-redux").Provider;
 
 var router = require('react-router');
 var Router = router.Router;
@@ -14,6 +15,7 @@ var Modal = require("./modal");
 var GameNav = require("./game-nav");
 var GameHeader = require("./game-header");
 var GameBox = require("./game-box");
+var store = require("./store");
 
 var Game = React.createClass({
   render: function(){
@@ -38,5 +40,9 @@ var routes = (
 
 
 document.addEventListener("DOMContentLoaded", function(){
-  ReactDOM.render(routes, document.getElementById("app"));
+  ReactDOM.render(
+    <Provider store={store}>
+    {routes}
+    </Provider>
+    , document.getElementById("app"));
 });

@@ -5,6 +5,7 @@ var initialState = {
   guesses: [],
   feedback: null,  
   outcome: null,
+  numGuesses: 0
 };
 
 var gameReducer = function(state, action){
@@ -16,9 +17,7 @@ var gameReducer = function(state, action){
   else if (action.type === actions.GUESS_NUMBER){
     var newGuesses = state.guesses;
     newGuesses.push(action.guess);
-    return Object.assign({}, state, {guesses: newGuesses});
-//    return Object.assign({}, state, {guesses: action.guess});
-
+    return Object.assign({}, state, {guesses: newGuesses}, {numGuesses: newGuesses.length});
   }
   else if (action.type === actions.CALC_FEEDBACK){
     var lastGuessIndex = state.guesses.length - 1;
@@ -28,8 +27,6 @@ var gameReducer = function(state, action){
     else{
       var lastGuess = state.guesses[lastGuessIndex];
       var delta = Math.abs(lastGuess - state.number);
-      //var delta = Math.abs(state.guesses - state.number);
-      console.log(delta);
       var feedbackText = null;
      	if (delta == 0 ){
     		feedbackText = "hooray you won!!";

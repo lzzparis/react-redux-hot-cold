@@ -1,17 +1,17 @@
 var React = require("react");
 
 var Feedback = require("./feedback");
-var GuessForm = require("./guess-form");
-var GuessCounter = require("./guess-counter");
+var GuessFormContainer = require("./guess-form");
+var GuessCounterContainer = require("./guess-counter");
 
 var GameBox = function(){
   var feedbackText = "Make your Guess!";
-  var count = 0;
+  //var count = 0;
   return (
     <div className="game">
       <Feedback text={feedbackText} />
-      <GuessForm />
-      <GuessCounter count={count} />
+      <GuessFormContainer />
+      <GuessCounterContainer />
     </div>
   );
 };

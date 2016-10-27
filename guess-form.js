@@ -1,12 +1,23 @@
 var React = require("react");
+var connect = require("react-redux").connect;
 
-var GuessForm = function(props){
-  return(
-    <form>
-				<input type="text" name="userGuess" id="userGuess" className="text" placeholder="Enter your Guess" required/>
-      	<input type="submit" id="guessButton" className="button" name="submit" value="Guess"/>
-    </form>
-  );
-};
+var actions = require("./actions");
 
-module.exports = GuessForm;
+var GuessForm = React.createClass({
+  submitGuess: function(event){
+    event.preventDefault();
+    this.props.dispatch(actions.guessNumber(this.refs.guess.value));
+  },
+  render: function(){
+    return (
+      <form>
+				<input type="text" ref="guess" id="userGuess" className="text" placeholder="Enter your Guess" required/>
+      	<input type="submit" id="guessButton" className="button" name="submit" value="Guess" onClick={this.submitGuess}/>
+      </form>
+    );
+  }
+});
+
+var GuessFormContainer = connect()(GuessForm);
+
+module.exports = GuessFormContainer;
