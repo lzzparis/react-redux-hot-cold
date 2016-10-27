@@ -2,8 +2,7 @@ var actions = require("./actions");
 
 var initialState = {
   number: -1,
-  //guesses: [],
-  guesses: -1,
+  guesses: [],
   feedback: null,  
   outcome: null,
 };
@@ -15,9 +14,10 @@ var gameReducer = function(state, action){
     return Object.assign({}, state, {number: randomNumber});
   } 
   else if (action.type === actions.GUESS_NUMBER){
-//    var newGuesses = state.guesses.concat(actions.guess);
-//    return Object.assign({}, state, {guesses: newGuesses});
-    return Object.assign({}, state, {guesses: action.guess});
+    var newGuesses = state.guesses;
+    newGuesses.push(action.guess);
+    return Object.assign({}, state, {guesses: newGuesses});
+//    return Object.assign({}, state, {guesses: action.guess});
 
   }
   else if (action.type === actions.CALC_FEEDBACK){
@@ -27,8 +27,8 @@ var gameReducer = function(state, action){
     }
     else{
       var lastGuess = state.guesses[lastGuessIndex];
-      //var delta = Math.abs(lastGuess - state.number);
-      var delta = Math.abs(state.guesses - state.number);
+      var delta = Math.abs(lastGuess - state.number);
+      //var delta = Math.abs(state.guesses - state.number);
       console.log(delta);
       var feedbackText = null;
      	if (delta == 0 ){
@@ -51,6 +51,9 @@ var gameReducer = function(state, action){
     	}
       return Object.assign({}, state, {feedback: feedbackText});
     }
+  }
+  else if (action.type === actions.RESET_GAME){
+    state = Object.assign({},initialState, {guesses:[]});
   }
   return state;
 }

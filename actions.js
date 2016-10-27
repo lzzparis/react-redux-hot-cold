@@ -24,6 +24,12 @@ var calcFeedback = function(){
   }
 }
 
+var RESET_GAME = "RESET_GAME";
+var resetGame = function(){
+  return{
+    type: RESET_GAME
+  }
+}
 
 
 exports.GEN_NUMBER = GEN_NUMBER;
@@ -32,4 +38,6 @@ exports.GUESS_NUMBER = GUESS_NUMBER;
 exports.guessNumber = guessNumber;
 exports.CALC_FEEDBACK = CALC_FEEDBACK;
 exports.calcFeedback = calcFeedback;
+exports.RESET_GAME = RESET_GAME;
+exports.resetGame = resetGame;
 
