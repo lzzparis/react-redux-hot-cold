@@ -11,6 +11,7 @@ var gameReducer = function(state, action){
   state = state || initialState;
   if (action.type === actions.GEN_NUMBER){
     var randomNumber = Math.ceil(Math.random()*100);
+    console.log(randomNumber);
     return Object.assign({}, state, {number: randomNumber});
   } 
   else if (action.type === actions.GUESS_NUMBER){
