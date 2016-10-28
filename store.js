@@ -9,5 +9,3 @@ var store = createStore (reducers.gameReducer);
 
 module.exports = store;
 
-//store.dispatch(actions.genNumber()); 
-//store.getState();

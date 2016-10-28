@@ -1,7 +1,7 @@
 var actions = require("./actions");
 
 var initialState = {
-  number: -1,
+  number:  Math.ceil(Math.random()*100),
   guesses: [],
   feedback: "Make your guess!",  
   numGuesses: 0
@@ -9,12 +9,7 @@ var initialState = {
 
 var gameReducer = function(state, action){
   state = state || initialState;
-  if (action.type === actions.GEN_NUMBER){
-    var randomNumber = Math.ceil(Math.random()*100);
-    console.log(randomNumber);
-    return Object.assign({}, state, {number: randomNumber});
-  } 
-  else if (action.type === actions.GUESS_NUMBER){
+  if (action.type === actions.GUESS_NUMBER){
     var newGuesses = state.guesses;
     newGuesses.push(action.guess);
     return Object.assign({}, state, {guesses: newGuesses}, {numGuesses: newGuesses.length});
@@ -50,7 +45,8 @@ var gameReducer = function(state, action){
     }
   }
   else if (action.type === actions.RESET_GAME){
-    state = Object.assign({},initialState, {guesses:[]});
+    var randomNumber = Math.ceil(Math.random()*100);
+    state = Object.assign({},initialState, {guesses:[]}, {number: randomNumber});
   }
   return state;
 }

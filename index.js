@@ -17,13 +17,7 @@ var GameHeader = require("./game-header");
 var GameBox = require("./game-box");
 var store = require("./store");
 
-var connect = require("react-redux").connect;
-var actions = require("./actions");
-
 var Game = React.createClass({
-  componentDidMount: function(){
-    this.props.dispatch(actions.genNumber());
-  },
   render: function(){
     return (
       <div>
@@ -36,11 +30,9 @@ var Game = React.createClass({
   }
 });
 
-var GameContainer = connect()(Game);
-
 var routes = (
   <Router history={hashHistory}>
-    <Route path="/" component={GameContainer}>
+    <Route path="/" component={Game}>
       <Route path="/help" component={Modal}/>
     </Route>
   </Router>

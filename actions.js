@@ -1,11 +1,3 @@
-//generate number
-var GEN_NUMBER = "GEN_NUMBER";
-var genNumber = function(number){
-  return {
-    type: GEN_NUMBER,
-    number: number
-  }
-}
 
 //guess number
 var GUESS_NUMBER = "GUESS_NUMBER";
@@ -32,8 +24,6 @@ var resetGame = function(){
 }
 
 
-exports.GEN_NUMBER = GEN_NUMBER;
-exports.genNumber = genNumber;
 exports.GUESS_NUMBER = GUESS_NUMBER;
 exports.guessNumber = guessNumber;
 exports.CALC_FEEDBACK = CALC_FEEDBACK;
