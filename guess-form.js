@@ -7,6 +7,7 @@ var GuessForm = React.createClass({
   submitGuess: function(event){
     event.preventDefault();
     this.props.dispatch(actions.guessNumber(this.refs.guess.value));
+    this.props.dispatch(actions.calcFeedback());
   },
   render: function(){
     return (

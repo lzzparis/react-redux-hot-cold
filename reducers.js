@@ -3,8 +3,7 @@ var actions = require("./actions");
 var initialState = {
   number: -1,
   guesses: [],
-  feedback: null,  
-  outcome: null,
+  feedback: "Make your guess!",  
   numGuesses: 0
 };
 
