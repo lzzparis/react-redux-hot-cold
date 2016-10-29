@@ -4,7 +4,9 @@ var initialState = {
   number:  Math.ceil(Math.random()*100),
   guesses: [],
   feedback: "Make your guess!",  
-  numGuesses: 0
+  numGuesses: 0,
+  fewestGuesses: "∞" 
+
 };
 
 var gameReducer = function(state, action){

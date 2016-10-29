@@ -4,6 +4,7 @@ var FeedbackContainer = require("./feedback");
 var GuessFormContainer = require("./guess-form");
 var GuessCounterContainer = require("./guess-counter");
 var GuessListContainer = require("./guess-list");
+var GuessRecordContainer = require("./guess-record");
 
 var GameBox = function(){
   return (
@@ -12,6 +13,7 @@ var GameBox = function(){
       <GuessFormContainer />
       <GuessCounterContainer />
       <GuessListContainer />
+      <GuessRecordContainer />
     </div>
   );
 };
