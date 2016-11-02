@@ -9,6 +9,14 @@ var GuessForm = React.createClass({
       inputValue: ""
     }
   },
+  componentDidMount: function(){
+    this.props.dispatch(actions.fetchRecord());
+  },
+  componentWillReceiveProps:function(nextProps){
+    if(nextProps.gameWon){
+      this.props.dispatch(actions.saveRecord(nextProps.numGuesses));
+    }
+  },
   updateInput:function(event){
     this.setState({inputValue:event.target.value})
   },
@@ -18,7 +26,7 @@ var GuessForm = React.createClass({
   submitGuess: function(event){
     event.preventDefault();
     this.props.dispatch(actions.guessNumber(this.refs.guess.value));
-    this.props.dispatch(actions.calcFeedback());
+    var result = this.props.dispatch(actions.calcFeedback());
     this.resetInput();
   },
   render: function(){
@@ -32,6 +40,14 @@ var GuessForm = React.createClass({
   }
 });
 
-var GuessFormContainer = connect()(GuessForm);
+var mapStateToProps = function(state, props){
+  return {
+    gameWon: state.gameWon,
+    numGuesses: state.numGuesses,
+    number: state.number
+  }
+};
+
+var GuessFormContainer = connect(mapStateToProps)(GuessForm);
 
 module.exports = GuessFormContainer;

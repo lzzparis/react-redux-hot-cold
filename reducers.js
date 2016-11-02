@@ -5,7 +5,8 @@ var initialState = {
   guesses: [],
   feedback: "Make your guess!",  
   numGuesses: 0,
-  fewestGuesses: "∞" 
+  fewestGuesses: "∞",
+  gameWon: false 
 
 };
 
@@ -25,8 +26,10 @@ var gameReducer = function(state, action){
       var lastGuess = state.guesses[lastGuessIndex];
       var delta = Math.abs(lastGuess - state.number);
       var feedbackText = null;
+      var gameWon = false;
      	if (delta == 0 ){
     		feedbackText = "hooray you won!!";
+        gameWon = true;
     	}
     	else if (delta <= 10){
     		feedbackText = "boiling hot!";
@@ -43,12 +46,20 @@ var gameReducer = function(state, action){
     	else {
     		feedbackText = "freezing cold";
     	}
-      return Object.assign({}, state, {feedback: feedbackText});
+      return Object.assign({}, state, {feedback: feedbackText}, {gameWon: gameWon});
     }
   }
   else if (action.type === actions.RESET_GAME){
     var randomNumber = Math.ceil(Math.random()*100);
-    state = Object.assign({},initialState, {guesses:[]}, {number: randomNumber});
+    return Object.assign({},initialState, {guesses:[]}, {number: randomNumber});
+  }
+  else if (action.type === actions.FETCH_FEWEST_GUESSES){
+    var record = action.record;
+    return Object.assign({}, state, {fewestGuesses: action.record});
+  }
+  else if (action.type === actions.SAVE_FEWEST_GUESSES){
+    alert(action.feedback); 
+    return Object.assign({}, state, {fewestGuesses: action.record});
   }
   return state;
 }

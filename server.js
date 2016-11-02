@@ -7,6 +7,9 @@ app.use(bodyParser.json());
 
 var fewestGuessesRecord = null;
 
+
+app.use(express.static("build"));
+
 app.get("/fewest-guesses", function(req, res){
   var data = {record: fewestGuessesRecord};
   res.status(200).json(data);
@@ -30,10 +33,13 @@ app.post("/fewest-guesses", function(req, res){
     feedback = "Aw, someone else was better at guessing than you...";
   }
   var results = {
-    standingRecord: fewestGuessesRecord, 
+    record: fewestGuessesRecord, 
     feedback: feedback
   };
-  res.status(201).json(results);
+
+  res.status(201).header("Access-Control-Allow-Origin", "*").json(results);
 });
 
-app.listen(process.env.PORT || 8080, process.env.IP);
+app.listen(8080, process.env.IP);
+
+console.log("Listening on port 8080");

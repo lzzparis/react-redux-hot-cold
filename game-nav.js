@@ -8,6 +8,8 @@ var actions = require("./actions");
 var GameNav = React.createClass({
   newGame: function(){
     this.props.dispatch(actions.resetGame());
+    console.log(this.props.number);
+    this.props.dispatch(actions.fetchRecord());
   },
   render: function(){
     return(
@@ -21,6 +23,12 @@ var GameNav = React.createClass({
   }
 });
 
-var GameNavContainer = connect()(GameNav);
+var mapStateToProps = function(state, props){
+  return {
+    number: state.number
+  }
+}
+
+var GameNavContainer = connect(mapStateToProps)(GameNav);
 
 module.exports = GameNavContainer;
